@@ -1,0 +1,17 @@
+
+{% for i in data %}
+    <h4>{{i.qname|safe}}</h4>
+    <div class="radio">
+        <label><input type="radio" value="{{i.qitem1}}" name="optradio{{i.id}}" checked> {{i.qitem1|safe}}</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" value="{{i.qitem2}}" name="optradio{{i.id}}"> {{i.qitem2|safe}}</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" value="{{i.qitem3}}" name="optradio{{i.id}}"> {{i.qitem3|safe}}</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" value="{{i.qitem4}}" name="optradio{{i.id}}"> {{i.qitem4|safe}}</label>
+    </div>
+    <br>
+{% endfor%}

@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block head%}
+
+<style>
+    h1 {
+        font-family: cursive;
+        color: red;
+        text-transform: uppercase;
+    }
+    .bg{
+        height: 200px;background: url('/static/images/nature.jpg');
+    }
+    .myimg{
+        height: 300px;
+    }
+    .box:hover{
+        height: 100%;width: 100%;background:rgba(0, 0, 0, 0.5);color: white;text-align: justify;
+    }
+</style>
+{% endblock %}
+{% block myblock %}
+<div class="container-fluid">
+    <!-- <h1>Hello Users</h1> -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Our categories({{category|length}})</h1>
+        </div>
+        {% for cat in category%}
+        <div class="col-md-4 p-4 text-center">
+            <div style="box-shadow:0px 0px 10px black; background: url('/media/{{cat.cover_pic}}');background-size:100% 100%;" class="myimg">
+                <!-- <img src="/media/{{cat.cover_pic}}" alt="" height="200"> -->
+                <div class="box" style="height: 300px;">
+                    <h2>{{cat.cat_name}}</h2>
+                    <p>{{cat.description}}</p>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">Previous feedback</h2>
+            <h4 class="text-center"><em>Total:{{msg|length}}</em></h4>
+            <table class="table table-bordered talbe-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in msg%}
+                    <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.contact_number}}</td>
+                        <td>{{i.subject}}</td>
+                        <td>{{i.message}}</td>
+                        <td>{{i.added_on}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% if status %}
+<script>
+    alert('{{status}}');
+    window.location = '/'
+</script>
+{% endif %}
+{% endblock %}

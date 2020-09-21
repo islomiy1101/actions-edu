@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load question_tags %}
+{% block head%}
+<script>
+    function colnames(){
+    namedisplay=document.querySelector('input[name=optradio]:checked').value;
+    document.querySelector('#qname').textContent='U '+namedisplay+' checked';
+    }
+</script>
+{% endblock%}
+{% block myblock %}
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-12 py-5">
+            <form action="" method="post">
+                {% csrf_token %}
+
+                {% for j in datapart%}
+                    <h4>{{j.parttitle}}</h4><br>
+                    {% if j.partdesc %}
+                       <div style="border: 1px solid red;"><h5>{{j.partdesc | safe}}</h5></div><br>
+                    {% else %}
+                    <div></div>
+                    {% endif %}
+                    {%  savollar id=j.id %}
+                {% endfor %}
+                <input type="submit" name="btn" class="btn btn-success" value="Send" id="submitbtn">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

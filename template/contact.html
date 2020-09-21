@@ -1,0 +1,84 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block myblock %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12  bg-primary text-center py-5 text-light">
+            <h1 style="color: white;">Biz bilan Aloqa</h1>
+        </div>
+        <div class="col-md-6">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.517174499083!2d71.64658751460726!3d40.992052228373474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb4be6a88e139f%3A0xe9f0c86392865058!2zTWFrcm8g0YHRg9C_0LXRgNC80LDRgNC60LXRgiDQotCmINCo0L7QtNC70LjQug!5e0!3m2!1sru!2s!4v1597759693954!5m2!1sru!2s"
+                width="100%" height="555" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0"></iframe>
+        </div>
+        <div class="col-md-6 ">
+            <form action="" method="post">{%csrf_token%}
+                <div class="form-group">
+                    <label>Ismingiz</label>
+                    <input type="text" name="name" class="form-control" placeholder="namuna:Islomiy..." required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon nomer</label>
+                    <input type="number" name="contact" class="form-control" placeholder="namuna:+998991111111..."
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>E-pochta</label>
+                    <input type="email" name="email" class="form-control" placeholder="namuna: islomiy1101@gmail.com..."
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Mavzu</label>
+                    <input type="text" name="subject" class="form-control" placeholder="namuna:IT sohasi..." required>
+                </div>
+                <div class="form-group">
+                    <label>Xabar</label>
+                    <textarea class='form-control' rows="5" name="message" required
+                        placeholder="namuna:Salom dunyo !..."></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class='btn btn-success' value="Yuborish">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">Previous feedback</h2>
+            <h4 class="text-center"><em>Total:{{messages|length}}</em></h4>
+            <table class="table table-bordered talbe-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for msg in messages%}
+                    <tr>
+                        <td>{{msg.id}}</td>
+                        <td>{{msg.name}}</td>
+                        <td>{{msg.email}}</td>
+                        <td>{{msg.contact_number}}</td>
+                        <td>{{msg.subject}}</td>
+                        <td>{{msg.message}}</td>
+                        <td>{{msg.added_on}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% if status %}
+<script>
+    alert('{{status}}');
+</script>
+{% endif %}
+{% endblock %}
