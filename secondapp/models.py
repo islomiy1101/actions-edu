@@ -100,11 +100,11 @@ class PartQuestion(models.Model):
 class Question(models.Model):
     partquestion_id=models.ForeignKey(PartQuestion,on_delete=models.CASCADE)
     qname=RichTextUploadingField()
-    qitem1=RichTextUploadingField()
-    qitem2=RichTextUploadingField()
-    qitem3=RichTextUploadingField()
-    qitem4=RichTextUploadingField()
-    answer=RichTextUploadingField()
+    qitem1=models.CharField(max_length=250,blank=True)
+    qitem2=models.CharField(max_length=250,blank=True)
+    qitem3=models.CharField(max_length=250,blank=True)
+    qitem4=models.CharField(max_length=250,blank=True)
+    answer=models.CharField(max_length=250,blank=True)
     # made_by=models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE)
 
 
